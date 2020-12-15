@@ -1,0 +1,26 @@
+{
+  "../components/Header/Header": [
+    {
+      "id": "./components/Header/Header.js",
+      "file": "static/chunks/1.js"
+    }
+  ],
+  "./dev/noop": [
+    {
+      "id": "./node_modules/next/dist/client/dev/noop.js",
+      "file": "static/chunks/0.js"
+    }
+  ],
+  "common/components/Footer/Footer": [
+    {
+      "id": "./node_modules/common/components/Footer/Footer.js",
+      "file": "static/chunks/2.js"
+    }
+  ],
+  "common/components/Test/Test": [
+    {
+      "id": "./node_modules/common/components/Test/Test.js",
+      "file": "static/chunks/3.js"
+    }
+  ]
+}
