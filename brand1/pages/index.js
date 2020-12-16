@@ -1,5 +1,7 @@
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
+import React, { useContext } from "react";
+import { UserContext } from 'common/contexts/user-context';
 //
 //const Header = dynamic(import('../components/Header/Header'))
 const Footer = dynamic(import('common/components/Footer'));
@@ -23,14 +25,18 @@ const fetchData = async () => await axios.get('https://jsonplaceholder.typicode.
 
 export default function Home({error, articles}) {
 
+  const user = useContext(UserContext);
+
   return (
     <div>
       <p>This is our homepage brand 1</p>
+      <p>User: {user.username}</p>
       <Articles articles={articles}/>
       <Footer/>
     </div>
   )
 }
+
 
 export const getServerSideProps = async () => {
   const data = await fetchData();
