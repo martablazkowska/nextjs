@@ -1,6 +1,6 @@
 const Header = () => {
   return (
-    <div>Header</div>
+    <div>Header for brand 1<div>
   )
 };
 
