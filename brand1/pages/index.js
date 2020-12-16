@@ -10,14 +10,6 @@ export default function Home() {
     <div>
       <Header/>
       <p>This is our homepage brand 1</p>
-      <div>
-        <a href="/blog">Blog</a>
-      </div>
-      <div>
-        <Link href="/about">
-          <a>About us</a>
-        </Link>
-      </div>
       <Test/>
       <Footer/>
     </div>
