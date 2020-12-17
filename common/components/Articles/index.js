@@ -10,7 +10,7 @@ const Articles = ({ articles }) => {
       <h2>Articles</h2>
       <h4>User: {user.username}</h4>
       <ul>
-        {articles.slice(1, 10).map((article) => {
+        {articles.map((article) => {
           return(<li key={article.id}>{article.title}</li>)
         })}
       </ul>
