@@ -35,7 +35,7 @@ export default function Home({error, articles}) {
 
   return (
     <div>
-      <p>This is our homepage brand 1</p>
+      <p>This is our homepage  <strong>brand 1</strong></p>
       <p>User: {user.username}</p>
       <Articles articles={articles}/>
       <Footer/>

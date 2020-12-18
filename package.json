@@ -7,6 +7,9 @@
     "dev-b1": "cd brand1 && npm run dev",
     "dev-b2": "cd brand2 && npm run dev",
     "dev-all": "concurrently \"npm run dev-b1\" \"npm run dev-b2\" ",
+    "install-b1": "cd brand1 && npm install",
+    "install-b2": "cd brand2 && npm install",
+    "install-all": "concurrently \"npm install\" \"npm run install-b1\" \"npm run install-b2\" ",
     "build": "next build",
     "start": "next start"
   },

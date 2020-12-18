@@ -18,3 +18,12 @@ cd brand2
 npm install
 npm run dev
 ```
+
+
+Running all brands at the same time
+
+```bash
+npm run install-all
+npm run dev-all
+```
+
