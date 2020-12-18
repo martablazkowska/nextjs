@@ -1,16 +1,12 @@
-import Link from 'next/link'
-import dynamic from 'next/dynamic'
+import dynamic from "next/dynamic";
 
-
-import React, { useContext } from "react";
-import { UserContext } from 'common/contexts/user-context';
-
-const Footer = dynamic(import('common/components/Footer'));
 const Articles = dynamic(import('common/components/Articles'));
-const Button = dynamic(import('../components/Button'));
+const Footer = dynamic(import('common/components/Footer'));
 const Sidebar = dynamic(import('../components/Sidebar'));
 
 import axios from 'axios';
+import React, {useContext} from "react";
+import {UserContext} from "common/contexts/user-context";
 
 const fetchData = async () => await axios.get('https://jsonplaceholder.typicode.com/albums')
   .then(res => {
@@ -25,7 +21,8 @@ const fetchData = async () => await axios.get('https://jsonplaceholder.typicode.
     }),
   );
 
-export default function Home({error, articles}) {
+
+export default function FetchingDataPage({error, articles}) {
 
   const user = useContext(UserContext);
 
@@ -33,12 +30,9 @@ export default function Home({error, articles}) {
     <div>
       <Sidebar/>
       <div>
-        <p>This is our homepage  <strong>brand 1</strong></p>
-        <Button
-          href='https://google.com'
-          rel='noopener'
-        >I'm a primary button</Button>
-        <Button secondary>I'm a secondary button</Button>
+        <p>Fetching data excample for  <strong>brand 1</strong></p>
+        <p>User: {user.username}</p>
+        <Articles articles={articles}/>
       </div>
       <Footer/>
     </div>
