@@ -9,6 +9,7 @@ const Footer = dynamic(import('common/components/Footer'));
 const Articles = dynamic(import('common/components/Articles'));
 const Button = dynamic(import('../components/Button'));
 const Sidebar = dynamic(import('../components/Sidebar'));
+const Sidebar = dynamic(import('../components/Layout'));
 
 import axios from 'axios';
 
