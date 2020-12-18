@@ -9,8 +9,13 @@ const Menu = () => {
         </Link>
       </li>
       <li>
-        <Link href="/fetchingData">
-          <a>Fetching data excample</a>
+        <Link href="/fetchingDataStatic">
+          <a>Static Fetching data excample</a>
+        </Link>
+      </li>
+      <li>
+        <Link href="/fetchingDataServer">
+          <a>Server Fetching data excample</a>
         </Link>
       </li>
     </ul>
