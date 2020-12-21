@@ -6,7 +6,7 @@ const UserContext = React.createContext({
 });
 
 // context provider
-const Provider = ({ children }) => {
+const UserProvider = ({ children }) => {
 
   const user = {
     id: 1,
@@ -16,4 +16,4 @@ const Provider = ({ children }) => {
   return <UserContext.Provider value={user}>{ children }</UserContext.Provider>;
 };
 
-export { UserContext, Provider };
+export { UserContext, UserProvider };

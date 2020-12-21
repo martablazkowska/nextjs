@@ -13,7 +13,6 @@ const Button = styled(OriginalButton)`
       background-color: lightblue;
     `}
   }
- 
 `
 
 export default Button;

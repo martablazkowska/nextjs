@@ -1,17 +1,11 @@
-import Link from 'next/link'
-import dynamic from 'next/dynamic'
+import React, { useContext } from "react";
 
-//const Header = dynamic(import('../components/Header/Header'))
-// const Footer = dynamic(import('common/components/Footer/Footer'));
-// const Test = dynamic(import('common/components/Test/Test'));
+import dynamic from 'next/dynamic'
 const Button = dynamic(import('../components/Button'));
 
-import React, { useContext } from "react";
 import { UserContext } from 'common/contexts/user-context';
-//
-//const Header = dynamic(import('../components/Header/Header'))
+
 const Footer = dynamic(import('common/components/Footer'));
-const Test = dynamic(import('common/components/Test'));
 const Articles = dynamic(import('common/components/Articles'));
 
 import axios from 'axios';
