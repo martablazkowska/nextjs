@@ -1,14 +1,17 @@
 import React from 'react';
 import App from "next/app";
-import { Provider } from 'common/contexts/user-context';
+import { UserProvider } from 'common/contexts/user-context';
+import { LanguageProvider } from 'common/contexts/language-context';
 
 class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props;
     return (
-      <Provider>
-        <Component {...pageProps} />
-      </Provider>
+      <LanguageProvider>
+        <UserProvider>
+          <Component {...pageProps} />
+        </UserProvider>
+      </LanguageProvider>
     );
   }
 }

@@ -1,16 +1,13 @@
-import Link from 'next/link'
-import dynamic from 'next/dynamic'
-
-
 import React, { useContext } from "react";
-import { UserContext } from 'common/contexts/user-context';
+import axios from 'axios';
+import dynamic from 'next/dynamic'
 
 const Footer = dynamic(import('common/components/Footer'));
 const Articles = dynamic(import('common/components/Articles'));
 const Button = dynamic(import('../components/Button'));
 const Sidebar = dynamic(import('../components/Sidebar'));
 
-import axios from 'axios';
+import { UserContext } from 'common/contexts/user-context';
 
 const fetchData = async () => await axios.get('https://jsonplaceholder.typicode.com/albums')
   .then(res => {
