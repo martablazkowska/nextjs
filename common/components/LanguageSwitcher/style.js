@@ -25,6 +25,12 @@ const StyledLanguageSwitcher = styled.ol`
       color: white;
     }
     
+    &.disabled {
+      opacity: .5;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+    
     :hover {
       border-color: cornflowerblue;
     }

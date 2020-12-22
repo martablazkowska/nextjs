@@ -1,6 +1,11 @@
 const withTM = require('next-transpile-modules')(['common'])
-const compose = require('next-compose')
+const withPlugins = require('next-compose-plugins')
 
-module.exports = compose([
-    withTM
-]);
+const nextConfig = {
+    images: {
+        domains: ['www.casinogods.com']
+    }
+}
+
+module.exports = withPlugins([withTM], nextConfig);
+
