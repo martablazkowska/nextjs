@@ -1,0 +1,29 @@
+{
+  "name": "nextjs",
+  "version": "1.0.0",
+  "description": "### How to use",
+  "main": "index.js",
+  "scripts": {
+    "dev-b1": "cd brand1 && npm run dev",
+    "dev-b2": "cd brand2 && npm run dev",
+    "dev-all": "concurrently \"npm run dev-b1\" \"npm run dev-b2\" ",
+    "install-b1": "cd brand1 && npm install",
+    "install-b2": "cd brand2 && npm install",
+    "install-all": "concurrently \"npm install\" \"npm run install-b1\" \"npm run install-b2\" ",
+    "build": "next build",
+    "start": "next start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/martablazkowska/nextjs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/martablazkowska/nextjs/issues"
+  },
+  "homepage": "https://github.com/martablazkowska/nextjs#readme",
+  "dependencies": {
+    "concurrently": "^5.3.0"
+  }
+}

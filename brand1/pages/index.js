@@ -1,14 +1,13 @@
 import React, { useContext } from "react";
-
+import axios from 'axios';
 import dynamic from 'next/dynamic'
-const Button = dynamic(import('../components/Button'));
-
-import { UserContext } from 'common/contexts/user-context';
 
 const Footer = dynamic(import('common/components/Footer'));
 const Articles = dynamic(import('common/components/Articles'));
+const Button = dynamic(import('../components/Button'));
+const Sidebar = dynamic(import('../components/Sidebar'));
 
-import axios from 'axios';
+import { UserContext } from 'common/contexts/user-context';
 
 const fetchData = async () => await axios.get('https://jsonplaceholder.typicode.com/albums')
   .then(res => {
@@ -29,15 +28,16 @@ export default function Home({error, articles}) {
 
   return (
     <div>
-      <p>This is our homepage brand 1</p>
-      <p>User: {user.username}</p>
-      <Articles articles={articles}/>
+      <Sidebar/>
+      <div>
+        <p>This is our homepage  <strong>brand 1</strong></p>
+        <Button
+          href='https://google.com'
+          rel='noopener'
+        >I'm a primary button</Button>
+        <Button secondary>I'm a secondary button</Button>
+      </div>
       <Footer/>
-      <Button
-        href='https://google.com'
-        rel='noopener'
-      >I'm a primary button</Button>
-      <Button secondary>I'm a secondary button</Button>
     </div>
   )
 }
