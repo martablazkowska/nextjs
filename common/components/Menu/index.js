@@ -18,6 +18,16 @@ const Menu = () => {
           <a>Server Fetching data excample</a>
         </Link>
       </li>
+      <li>
+        <Link href="/promotions">
+          <a>Promotions</a>
+        </Link>
+      </li>
+      <li>
+        <Link href="/promotions/aaa">
+          <a>Promotion Aaa</a>
+        </Link>
+      </li>
     </ul>
   )
 };
