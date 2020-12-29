@@ -1,62 +1,61 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
+
+import { getLanguageName } from "../../utils/lang";
 
 import StyledLanguageSwitcher from "./style"
-import {LanguageContext} from "../../contexts/language-context"
 
 const LanguageSwitcher = ({ children, ...props }) => {
-    const [lang, setLang] = useContext(LanguageContext)
-    const { translations, banners } = lang || {}
+    const [ banners, setBanners ] = useState({ fetching: true, 'en-EU': [] })
+    const [ translations, setTranslations ] = useState({ fetching: true, 'en-EU': [] })
 
-    const languages = [
-        {
-            name: 'English',
-            short: 'en'
-        },
-        {
-            name: 'Deutsch',
-            short: 'de'
-        }
-    ]
+    const { locales, locale } = useRouter();
 
-    const fetchTranslations = async short => {
-        setLang({ ...lang, translations: { fetching: true } })
+    const fetchTranslations = async () => {
+        setTranslations({ ...translations, fetching: true })
 
-        return await axios.get(`https://cms.spela.com/${short}/arest/locale/translations`)
+        return await axios.get(`https://cms.spela.com/${locale}/arest/locale/translations`)
             .then(({ data }) => data)
     }
 
-    const fetchBanners = async short => {
-        setLang({ ...lang, banners: { fetching: true } })
+    const fetchBanners = async () => {
+        setBanners({ ...banners, fetching: true });
 
-        return await axios.get(`https://cms.casinogods.com/${short}/arest/blocks/region/Header`)
+        return await axios.get(`https://cms.casinogods.com/${locale}/arest/blocks/region/Header`)
             .then(({ data }) => data)
     }
 
-    const setResponse = (target = 'translations', func) => {
-        if (!lang[target][lang.current])
-            func([lang.current]).then(res => setLang({
-                ...lang,
-                [target]: {...lang[target], [lang.current]: res, fetching: false}
+    const setResponse = (target = 'translations', func, set) => {
+        if (![target])
+            func().then(res => set({
+                ...[target],
+                fetching: false,
+                [locale]: res
             }))
     }
 
-    // Fetch translations and set the context when the language changes
-    useEffect(() => setResponse('translations', () => fetchTranslations(lang.current)), [, lang.current])
+    // Fetch translations and set when the language changes
+    useEffect(() => setResponse('translations', () => fetchTranslations(), setTranslations()), [, locale])
 
-    // Fetch banners (and/or anything else) and set the context once translations are set
-    useEffect(() => !translations.fetching && setResponse('banners', () => fetchBanners(lang.current)), [lang.translations])
+    // Fetch banners (and/or anything else) and set once translations are set
+    useEffect(() => {
+        translations[locale] && !translations.fetching && setResponse('banners', () => fetchBanners(), setBanners())
+    }, [translations])
     // useEffect(() => !articles.fetching && setResponse('articles', () => fetchArticles(lang.current)), [lang.articles])
+
+    useEffect(() => {
+    }, [])
 
     return (
         <>
             <StyledLanguageSwitcher {...props}>
-                {languages.map(({name, short}, index) =>
+                {locales.map((short, index) =>
                     <li
-                        className={`${short === lang.current ? 'active' : ''} ${lang.banners.fetching ? 'disabled' : ''}`}
+                        className={`${short === locale ? 'active' : ''} ${banners.fetching ? 'disabled' : ''}`}
                         key={short+index}
-                        onClick={() => lang.current !== short && setLang({...lang, current: short})}
+                        onClick={() => locale !== short ? document.cookie = '' : ''}
                     >
                         <Image
                             src={`/flags/${short}.svg`}
@@ -64,7 +63,7 @@ const LanguageSwitcher = ({ children, ...props }) => {
                             objectPosition='left 50%'
                             objectFit='contain'
                         />
-                        {name}
+                        {getLanguageName(short)}
                     </li>
                 )}
                 {(translations.fetching || banners.fetching) && 'Loading...'}
@@ -72,14 +71,14 @@ const LanguageSwitcher = ({ children, ...props }) => {
             {
                 !translations.fetching &&
                 translations &&
-                translations[lang.current] &&
-                <p>{translations[lang.current].myaccount_home['account-summary']}</p>
+                translations[locale] &&
+                <p>{translations[locale].myaccount_home['account-summary']}</p>
             }
             {
                 !banners.fetching &&
                 banners &&
-                banners[lang.current] &&
-                banners[lang.current].map((banner, index) => {
+                banners[locale] &&
+                banners[locale].map((banner, index) => {
                     return (
                             <div key={banner + index}>
                                 <div dangerouslySetInnerHTML={{__html: banner.fields.body.value[0]}}/>
